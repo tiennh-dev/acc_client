@@ -1,0 +1,35 @@
+<div *blockUI="'blockui-popup'">
+    <div class="modal-header">
+      <h4 class="modal-title">{{title}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('x')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="table-responsive">
+        <table class="table table-border-vertical table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">name</th>
+            </tr>
+          </thead>
+          <tbody cdkDropList (cdkDropListDropped)="drop($event)">
+            <tr cdkDrag *ngFor="let item of dataWareHouse; let i = index" style="cursor: pointer;">
+              <td scope="row">
+                {{item.order}}
+              </td>
+              <td>
+                <span>{{item.name}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer"> 
+      <button class="btn btn-primary mr-1" (click)="onSortOrder()">Save change
+          sort</button>
+      <button type="button" class="btn btn-light"  (click)="activeModal.dismiss('x')">Close</button>
+    </div>
+  </div>

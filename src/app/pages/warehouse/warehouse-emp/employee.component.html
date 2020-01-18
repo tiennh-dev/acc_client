@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h4 class="modal-title" style="text-transform: uppercase">Danh sách nhân viên</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('x')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<block-ui>
+  <div class="modal-body">
+    <div class="row filter">
+      <div class="col-lg-4">
+        <div class="input-group">
+          <input type="text" class="form-control" (keydown.enter)="rerender()" (change)="rerender()"
+            placeholder="Tài khoản....." [(ngModel)]="usernameEmp" />
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="input-group">
+          <input type="text" class="form-control" (keydown.enter)="rerender()" (change)="rerender()"
+            placeholder="Email....." [(ngModel)]="emailEmp" />
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="input-group">
+          <input type="text" class="form-control" (keydown.enter)="rerender()" (change)="rerender()"
+            placeholder="SDT....." [(ngModel)]="phoneEmp" />
+        </div>
+      </div>
+    </div>
+    <div>
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table  table-hover"> </table>
+      <br>
+      <button type="button" class="btn btn-light pull-right " (click)="activeModal.dismiss('x')">Close</button>
+      <br>
+    </div>
+
+    <br>
+  </div>
+</block-ui>

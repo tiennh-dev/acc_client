@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5>Thanh toán đơn hàng</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="search-box">
+                        <div class="row  mb-1">
+                            <div class="col-lg-3">
+                                <input placeholder="Số tài khoản" type="text" class="form-control"
+                                    [(ngModel)]="search_no" />
+                            </div>
+                            <div class="col-lg-3">
+                                <input placeholder="Tên tài khoản" type="text" class="form-control"
+                                    [(ngModel)]="search_name" />
+                            </div>
+                            <div class="col-lg-3">
+                                <ng-select [items]="listType" bindLabel="name" bindValue="id" [(ngModel)]="search_Type"
+                                    placeholder="Tính chất">
+                                </ng-select>
+                            </div>
+                            <div class="col-lg-3">
+                                <ng-select [items]="statusActive" bindLabel="name" bindValue="id"
+                                    [(ngModel)]="search_refType" placeholder="Trạng thái">
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                    <jqxTreeGrid #treeGridReference [width]="850" [height]="'auto'" [source]="dataAdapter"
+                        [pageable]="true" [columns]="columns" [ready]="ready">
+                    </jqxTreeGrid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

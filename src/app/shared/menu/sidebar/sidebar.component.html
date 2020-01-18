@@ -1,0 +1,83 @@
+<!--Page Sidebar Start-->
+ 
+<ul class="sidebar-menu">
+    <!-- 1st level Menu -->
+    <li *ngFor="let menuItem of menuItems">
+        <div class="sidebar-title" *ngIf="menuItem.headTitle">
+            {{menuItem.headTitle}}
+            <span class="badge badge-{{menuItem.badgeType}} pull-right" *ngIf="menuItem.badgeType">{{menuItem.badgeValue}}</span>
+        </div>
+        <!-- Sub -->
+        <a href="javascript:void(0)" class="sidebar-header" *ngIf="menuItem.type === 'sub'">
+            <i [class]="menuItem.icon"></i><span>{{menuItem.title}} <span class="badge badge-{{menuItem.badgeType}} ml-3" *ngIf="menuItem.badgeType">{{menuItem.badgeValue}}</span></span>
+            <i class="fa fa-angle-right pull-right" *ngIf="menuItem.children"></i>
+        </a>
+        <!-- Link -->
+        <a [routerLink]="!menuItem.type ? null : [menuItem.path]" routerLinkActive="active" class="sidebar-header" *ngIf="menuItem.type === 'link'">
+            <i [class]="menuItem.icon"></i><span>{{menuItem.title}} <span class="badge badge-{{menuItem.badgeType}} ml-3" *ngIf="menuItem.badgeType">{{menuItem.badgeValue}}</span></span>
+            <i class="fa fa-angle-right pull-right" *ngIf="menuItem.children"></i>
+        </a>
+        <!-- External Link -->
+        <a href="{{ !menuItem.type ? null : menuItem.path }}" class="sidebar-header" *ngIf="menuItem.type === 'extLink'">
+            <i [class]="menuItem.icon"></i><span>{{menuItem.title}} <span class="badge badge-{{menuItem.badgeType}} ml-3" *ngIf="menuItem.badgeType">{{menuItem.badgeValue}}</span></span>
+            <i class="fa fa-angle-right pull-right" *ngIf="menuItem.children"></i>
+        </a>
+        <!-- External Tab Link -->
+        <a href="{{ !menuItem.type ? null : menuItem.path }}" target="_blank" class="sidebar-header" *ngIf="menuItem.type === 'extTabLink'">
+            <i [class]="menuItem.icon"></i><span>{{menuItem.title}} <span class="badge badge-{{menuItem.badgeType}} ml-3" *ngIf="menuItem.badgeType">{{menuItem.badgeValue}}</span></span>
+            <i class="fa fa-angle-right pull-right" *ngIf="menuItem.children"></i>
+        </a>
+        <!-- 2nd Level Menu -->
+        <ul class="sidebar-submenu" *ngIf="menuItem.children">
+            <li *ngFor="let childrenItem of menuItem.children">
+                <!-- Sub -->
+                <a href="javascript:void(0)" *ngIf="childrenItem.type === 'sub'">
+                  <i class="fa fa-angle-right"></i>{{childrenItem.title}} <span class="badge badge-{{childrenItem.badgeType}} pull-right" *ngIf="childrenItem.badgeType">{{childrenItem.badgeValue}}</span>
+                  <i class="fa fa-angle-right pull-right" *ngIf="childrenItem.children"></i>
+                </a>
+                <!-- Link -->
+                <a [routerLink]="!childrenItem.type ? null : [childrenItem.path]" *ngIf="childrenItem.type === 'link'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                  <i class="fa fa-angle-right"></i>{{childrenItem.title}} <span class="badge badge-{{childrenItem.badgeType}} pull-right" *ngIf="childrenItem.badgeType">{{childrenItem.badgeValue}}</span>
+                  <i class="fa fa-angle-right pull-right" *ngIf="childrenItem.children"></i>
+                </a>
+                <!-- External Link -->
+                <a href="{{ !childrenItem.type ? null : childrenItem.path }}" *ngIf="childrenItem.type === 'extLink'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                  <i class="fa fa-angle-right"></i>{{childrenItem.title}} <span class="badge badge-{{childrenItem.badgeType}} pull-right" *ngIf="childrenItem.badgeType">{{childrenItem.badgeValue}}</span>
+                  <i class="fa fa-angle-right pull-right" *ngIf="childrenItem.children"></i>
+                </a>
+                <!-- External Tab Link -->
+                <a href="{{ !childrenItem.type ? null : childrenItem.path }}" target="_blank" *ngIf="childrenItem.type === 'extTabLink'">
+                  <i class="fa fa-angle-right"></i>{{childrenItem.title}} <span class="badge badge-{{childrenItem.badgeType}} pull-right" *ngIf="childrenItem.badgeType">{{childrenItem.badgeValue}}</span>
+                  <i class="fa fa-angle-right pull-right" *ngIf="childrenItem.children"></i>
+                </a>
+                <!-- 3rd Level Menu -->
+                <ul class="sidebar-submenu" *ngIf="childrenItem.children">
+                    <li *ngFor="let childrenSubItem of childrenItem.children">
+                        <!-- Link -->
+                        <a [routerLink]="!childrenSubItem.type ? null : [childrenSubItem.path]" *ngIf="childrenSubItem.type === 'link'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <i class="fa fa-angle-right"></i>{{childrenSubItem.title}} <span class="badge badge-{{childrenSubItem.badgeType}} pull-right" *ngIf="childrenSubItem.badgeType">{{childrenSubItem.badgeValue}}</span>
+                        </a>
+                        <!-- External Link -->
+                        <a href="{{ !childrenSubItem.type ? null : childrenSubItem.path }}" *ngIf="childrenSubItem.type === 'extLink'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                            <i class="fa fa-angle-right"></i>{{childrenSubItem.title}} <span class="badge badge-{{childrenSubItem.badgeType}} pull-right" *ngIf="childrenSubItem.badgeType">{{childrenSubItem.badgeValue}}</span>
+                        </a>
+                        <!-- External Tab Link -->
+                        <a href="{{ !childrenSubItem.type ? null : childrenSubItem.path }}" target="_blank" *ngIf="childrenSubItem.type === 'extTabLink'">
+                            <i class="fa fa-angle-right"></i>{{childrenSubItem.title}} <span class="badge badge-{{childrenSubItem.badgeType}} pull-right" *ngIf="childrenSubItem.badgeType">{{childrenSubItem.badgeValue}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul> 
+<div class="sidebar-widget text-center">
+    <div class="sidebar-widget-top"> 
+        <i class="icon-bell"></i>
+    </div>
+    <div class="sidebar-widget-bottom  m-20">
+        <p>+84 968 666 410
+            <br><a href="mailto:info@ichiba.vn"> info@ichiba.vn </a>
+        </p>
+    </div>
+</div>

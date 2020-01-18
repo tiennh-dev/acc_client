@@ -1,0 +1,33 @@
+<block-ui>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-lg-12">
+                <h5>Thông tin nhân viên</h5>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row mb-2">
+              <div class="col-lg-3">
+                <ng-select [items]="lstWh" [virtualScroll]="true" bindLabel="fName" (change)="rerender()"
+                  bindValue="id" [(ngModel)]="id" placeholder="Chọn kho..." >
+                </ng-select>
+              </div>
+              <div class="col-lg-3">
+                <button class="btn btn-primary" data-action="ADD" (click)="addEmp()">Thêm nhân viên</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table  table-hover"> </table>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+</block-ui>

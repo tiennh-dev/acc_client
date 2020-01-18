@@ -10,19 +10,19 @@ import { BlockUIModule } from 'ng-block-ui';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { jqxBarGaugeModule }    from 'jqwidgets-ng/jqxbargauge';
+import{ jqxTreeGridComponent } from 'jqwidgets-ng/jqxtreegrid';
 import { IndexComponent } from './index.component';
-import { jqxBarGaugeComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxbargauge';
  
 const routes: Routes = [
   {
     path: '',
-     component: IndexComponent
+     component: IndexComponent,
   }
 ];
 @NgModule({
   declarations: [
      IndexComponent,
-     jqxBarGaugeComponent
+     jqxTreeGridComponent
   ],
   imports: [
     CommonModule,

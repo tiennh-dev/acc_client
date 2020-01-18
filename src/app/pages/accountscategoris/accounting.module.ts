@@ -4,10 +4,10 @@ import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { AccountCategorisRoutingModule } from './accounting-routing.module';
 import { AccountingAccountsComponentModule } from './accountingaccounts/component.module';
  
+ 
 
 @NgModule({
     declarations: [
-
     ],
     imports: [
         AccountCategorisRoutingModule,

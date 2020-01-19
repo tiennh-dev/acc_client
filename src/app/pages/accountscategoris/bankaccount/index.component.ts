@@ -4,14 +4,13 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { DataTableDirective } from 'angular-datatables';
 import { ErrorCodeDefine } from 'src/app/common/error-code-define';
 // -----------------------
-import * as model from '../../../models/model/bankinfo.model';
+import * as model from '../../../models/model/bankaccount.model';
 import { BankInfoService } from 'src/app/services/bankinfo.service';
 import { UtilityService } from 'src/app/services/utility.service';
 import { ConfirmationDialogService } from 'src/app/services/confirmation-dialog.service';
-
+import { PermissionService } from 'src/app/services/permission.service';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ConfigSetting, Actions, MenuContextDefine2, PermissionCommon } from 'src/app/common/config-setting';
-import { PermissionService } from 'src/app/services/permission.service';
 import { BankAccountService } from 'src/app/services/bankaccount.service';
 import { AddbankAccountComponent } from './addbankaccount.component';
 
@@ -25,18 +24,17 @@ import { AddbankAccountComponent } from './addbankaccount.component';
 export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
     @BlockUI('blockui') blockUI: NgBlockUI;
     public dtTrigger: Subject<any> = new Subject();
-    public Keyword='';
+    public Keyword = '';
     public search_bankAccount = '';
     public search_Owner = '';
     public search_bankName = '';
-    public search_active =false;
+    public search_active = false;
     public activeList: any[] = [];
-    public dataTable:any[];
+    public dataTable: any[];
     // Public
     @ViewChild(DataTableDirective)
     dtElement: DataTableDirective;
     dtOptions: any = {};
-    public data: model.BankInfoListJTable[];
     public bankType: any[];
     public pageLength: number;
     public keyword: string;
@@ -44,6 +42,7 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
         private modalService: NgbModal,
         private ctService: BankAccountService,
         private utility: UtilityService,
+        private permissionService: PermissionService,
         private confirmService: ConfirmationDialogService,
     ) {
         this.pageLength = 30;
@@ -57,6 +56,15 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
     ngOnInit() {
         let tblToolbar = [];
         tblToolbar.push({
+            extend: 'print', text: '<span data-action-target="button" <i class="icofont icofont-print"></i> In', title: 'WalletTrans'
+        });
+        tblToolbar.push({
+            extend: 'colvis', text: '<i class="icofont icofont-table"></i> Cột hiển thị',
+            columnText: function (dt, idx, title) {
+                return (idx + 1) + ' : ' + title;
+            }
+        });
+        tblToolbar.push({
             text: '<span data-action-target="button"><i  class="icofont icofont-ui-add"></i> Thêm mới</span>',
             key: 'a', shiftKey: true,
             action: (e, dt, node, config) => {
@@ -68,32 +76,23 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
             }
         });
         tblToolbar.push({
-            extend: 'print', text: '<span data-action-target="button" <i class="icofont icofont-print"></i> In', title: 'WalletTrans'
-        });
-        tblToolbar.push({
             extend: 'excel', text: '<span data-action-target="button" ><i class="icofont icofont-file-excel"></i> Xuất Excel</span>',
             exportOptions: {
                 modifier: {
                     page: 'current'
                 }
             },
-            title: 'Bank Deposit',
-        });
-        tblToolbar.push({
-            extend: 'colvis', text: '<i class="icofont icofont-table"></i> Cột hiển thị',
-            columnText: function (dt, idx, title) {
-                return (idx + 1) + ' : ' + title;
-            }
+            title: 'Bank Account',
         });
         this.dtOptions = {
             language: {
                 'sLengthMenu': 'Xem_MENU_Mục ',
-              },
-              pagingType: 'full_numbers',
-              pageLength: this.pageLength,
-              serverSide: true,
-              processing: true,
-              searching: false,
+            },
+            pagingType: 'full_numbers',
+            pageLength: this.pageLength,
+            serverSide: true,
+            processing: true,
+            searching: false,
             ajax: (tblSearch: any, callback) => {
                 tblSearch.keyword = this.keyword;
                 tblSearch.bankAccount = this.search_bankAccount;
@@ -112,7 +111,7 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
             },
             dom: 'Bfrtip', select: true,
             columns: [
-                { data: 'BankAccount', title: 'Số tài khoản'},
+                { data: 'BankAccount', title: 'Số tài khoản' },
                 {
                     data: 'BankName', title: 'Tên ngân hàng'
                 },
@@ -120,30 +119,30 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
                     data: 'Branch', title: 'Chi nhánh'
                 },
                 { data: 'Province', title: 'Tỉnh/TP' },
-                { data: 'Address', title: 'Địa chỉ chi nhánh'},
-                { data: 'Owner', title: 'Chủ tài khoản'},
+                { data: 'Address', title: 'Địa chỉ chi nhánh' },
+                { data: 'Owner', title: 'Chủ tài khoản' },
                 { data: 'Note', title: 'Ghi chú' },
-                { data: 'Active', title: 'Ngừng theo dõi', 
-                render: function (data: any, type: any, item: any) {
-                      if (item.Active == "True") {
-                        return ` <div class="checkbox" ><input type="checkbox"  id="checkbox-primary-'${item.Id}'" checked  data-items /><label for="checkbox-primary-'${item.Id}'"></label></div>`
-                      } else {
-                        return ` <div class="checkbox" ><input type="checkbox"  id="checkbox-primary-'${item.Id}'"  data-items /><label for="checkbox-primary-'${item.Id}'"></label></div>`
-                      }
-                  }
-                 },
+                {
+                    data: 'Active', title: 'Ngừng theo dõi',
+                    render: function (data: any, type: any, item: any) {
+                        if (item.Active == "True") {
+                            return ` <div class="checkbox" ><input type="checkbox"  id="checkbox-primary-'${item.Id}'" checked  data-items /><label for="checkbox-primary-'${item.Id}'"></label></div>`
+                        } else {
+                            return ` <div class="checkbox" ><input type="checkbox"  id="checkbox-primary-'${item.Id}'"  data-items /><label for="checkbox-primary-'${item.Id}'"></label></div>`
+                        }
+                    }
+                },
             ],
-            rowCallback: (row: Node, data: model.BankInfoListJTable, index: number) => {
+            rowCallback: (row: Node, data: model.BankAccountJTable, index: number) => {
                 const self = this;
-                $(row).attr('id', 'bankinfo_row_item' + data.Id);
+                $(row).attr('id', 'bankacc_row_item' + data.Id);
                 let menuItemDefines: MenuContextDefine2[] = [
-                    { key: 'edit', name: 'Edit Bank', icon: 'fa-edit', permissionAction: Actions.EDIT },
-                    { key: 'active', name: 'Active', icon: 'fa-toggle-on', permissionAction: Actions.ACTIVE },
-                    { key: 'delete', name: 'Delete item', icon: 'fa-recycle', permissionAction: Actions.DELETE },
+                    { key: 'edit', name: 'Edit Bank', icon: 'fa-edit', permissionAction: Actions.ACCESS },
+                    { key: 'delete', name: 'Delete item', icon: 'fa-recycle', permissionAction: Actions.ACCESS },
                 ];
-                //let menuItems = PermissionCommon.createMenuItems(this.permissionService, menuItemDefines);
+                let menuItems = PermissionCommon.createMenuItems(this.permissionService, menuItemDefines);
                 $.contextMenu({
-                    selector: '#' + 'bankinfo_row_item' + data.Id,
+                    selector: '#' + 'bankacc_row_item' + data.Id,
                     build: function ($triggerElement, e) {
                         return {
                             callback: function (key, options) {
@@ -151,61 +150,54 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
 
                                 }
                                 if (key === 'active') {
-                                    
+
                                 }
                                 if (key === 'delete') {
-                                   
+                                    self.confirmService.confirm('Thông báo', `Bạn có chắc chắn muốn xóa tài khoản ngân hàng {${data.BankAccount}} không ?`)
+                                        .then((confirmed) =>
+                                            confirmed ? self.onDelete(data.Id) : self.confirmService.close()
+                                        ).catch(() =>
+                                            self.confirmService.close(),
+                                        );
                                 }
                             },
-                            //items: menuItems,
-                            'sep1': '---------',
-                            'quit': {
-                                name: 'Quit', icon: function () {
-                                    return 'context-menu-icon context-menu-icon-quit';
+                            items: {
+                                "edit": { name: "Edit item", icon: "fa-edit" },
+                                "delete": { name: "Delete item", icon: "fa-recycle" },
+                                "sep1": "---------",
+                                "quit": {
+                                    name: "Quit", icon: function () {
+                                        return 'context-menu-icon context-menu-icon-quit';
+                                    }
                                 }
                             }
                         };
                     }
                 });
-                $('[data-changebankType]', row).each((index, item) => {
-                    const $this = $(item);
-                    const selectedCode = $this.data('code');
-                    const html = this.generateBankTypeElement(selectedCode);
 
-                    $this.parent().html(html);
-                });
-             
                 return row;
             },
             buttons: tblToolbar
         };
     }
- 
- 
 
+    onDelete(Id: number): void {
+        this.ctService.deleteBankAccount(Id).subscribe(res => {
+            if (!res.status) {
+                this.utility.showError(res.errorCode, res.parameters);
+                return;
+            }
 
-    generateBankTypeElement(productoriginCode: string): string {
-        const startHtml = '<select data-changebankType class="select-custom"><option>Chọn</option>';
-        const endHtml = '</select>';
-        const optionHtml = this.bankType.map(item => {
-            let code = productoriginCode.toString();
-            const selected = item.id === code ? 'selected = "selected"' : '';
-            const option = `<option value="${item.id}"  ${selected}>${item.name}</option>`;
-
-            return option;
-        });
-        const html = [startHtml, ...optionHtml, endHtml].reduce((accumulator: string, currentValue: string, currentIndex, array) => {
-            return accumulator + currentValue;
-        }, '');
-
-        return html.toString();
+            this.utility.showMessage("Xóa ngân hàng thành công");
+            this.rerender(false);
+        })
     }
 
 
     // #region --Render datatable callback--
     rerender(reset: boolean): void {
         this.dtElement.dtInstance.then(x => x.draw(reset));
-      }
+    }
     ngAfterViewInit(): void {
         this.dtTrigger.next();
     }

@@ -21,5 +21,10 @@ export class BankAccountService {
         const url = ConfigSetting.ADD_NEW_BANK_ACCOUNT;
         return this.http.postAuthorize<BaseResponse>(url, request);
     }
+
+    deleteBankAccount(Id:number):Observable<BaseResponse>{
+        const url = ConfigSetting.DELETE_BANK_ACCOUNT;
+        return this.http.postAuthorize<BaseResponse>(url + '/' + Id, null);
+    }
    
 }

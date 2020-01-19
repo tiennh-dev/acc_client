@@ -29,13 +29,13 @@ export const MENUITEMS: Menu[] = [
   {
     path: '/accountscategoris/bankaccount', title: 'Tài khoản ngân hàng', icon: 'icon-home', type: 'link'
   },
-  {
-    headTitle: 'Quản lý kho'
-  },
-  {
-    path: '/warehouse/whinfo', title: 'Thông tin kho', icon: 'icon-home', type: 'link'
-  },
-  {
-    path: '/warehouse/whemployee', title: 'Nhân viên kho', icon: 'icon-home', type: 'link'
-  }
+  // {
+  //   headTitle: 'Quản lý kho'
+  // },
+  // {
+  //   path: '/warehouse/whinfo', title: 'Thông tin kho', icon: 'icon-home', type: 'link'
+  // },
+  // {
+  //   path: '/warehouse/whemployee', title: 'Nhân viên kho', icon: 'icon-home', type: 'link'
+  // }
 ];

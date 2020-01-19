@@ -24,7 +24,10 @@ export const MENUITEMS: Menu[] = [
     headTitle: 'Quản lý danh mục'
   },
   {
-    path: '/accountscategoris/accountingaccounts', title: 'Tài khoản kế toán', icon: 'icon-home', type: 'link'
+    path: '/accountscategoris/accountingaccounts', title: 'Tài khoản kế toán', icon: 'fa fa-user-circle-o', type: 'link'
+  },
+  {
+    path: '/accountscategoris/bankaccount', title: 'Tài khoản ngân hàng', icon: 'icon-home', type: 'link'
   },
   {
     headTitle: 'Quản lý kho'

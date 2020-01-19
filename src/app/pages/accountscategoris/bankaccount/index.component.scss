@@ -1,0 +1,27 @@
+.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated .custom-select:invalid, .custom-select.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+/*
+   server-side-angular-way.component.css
+*/
+.no-data-available {
+    text-align: center;
+  }
+  
+  /*
+     src/styles.css (i.e. your global style)
+  */
+  .dataTables_empty {
+    display: none;
+  }
+  .allowbid:hover{
+    cursor: pointer;
+  }
+  .dataTable img {
+    width: 50px;
+  }

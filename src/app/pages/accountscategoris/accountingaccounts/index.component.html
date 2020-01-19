@@ -1,11 +1,50 @@
-<jqxTreeGrid 
-             [width]="getWidth()"
-             [source]="dataAdapter"
-             [altRows]="true"
-             [enableHover]="false"
-             [editable]="true"
-             [selectionMode]="'none'"
-             [columns]="columns"
-             [ready]="ready"
-             #TreeGrid>
-</jqxTreeGrid>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5>Tài khoản kế toán</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="search-box">
+                        <div class="row mb-1">
+                            <div class="col-lg-3">
+                                <input placeholder="Số tài khoản" type="text" class="form-control"
+                                    [(ngModel)]="search_no" />
+                            </div>
+                            <div class="col-lg-3">
+                                <input placeholder="Tên tài khoản" type="text" class="form-control"
+                                    [(ngModel)]="search_name" />
+                            </div>
+                            <div class="col-lg-3">
+                                <ng-select [items]="typeList" bindLabel="display" bindValue="status"
+                                    [(ngModel)]="search_type" placeholder="Tính chất">
+                                </ng-select>
+                            </div>
+                            <div class="col-lg-3">
+                                <ng-select [items]="activeList" bindLabel="display" bindValue="status"
+                                    [(ngModel)]="search_active" placeholder="Trạng thái hoat động">
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                    <jqxTreeGrid 
+                    [width]="getWidth()"
+                    [source]="dataAdapter"
+                    [altRows]="true"
+                    [enableHover]="false"
+                    [editable]="true"
+                    [selectionMode]="'none'"
+                    [columns]="columns"
+                    [ready]="ready"
+                    #TreeGrid>
+       </jqxTreeGrid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

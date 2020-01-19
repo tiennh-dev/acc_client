@@ -5,10 +5,14 @@ import { PermissionGuard } from 'src/app/services/auth/permission.guard';
 const routes: Routes = [
     {
         path: '',
-        children: [ 
+        children: [
             {
                 path: 'accountingaccounts',
                 loadChildren: './accountingaccounts/component.module#AccountingAccountsComponentModule',
+            },
+            {
+                path: 'bankaccount',
+                loadChildren: './bankaccount/component.module#BankAccountComponentModule',
             }
         ]
     }

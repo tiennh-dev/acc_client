@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: {
-    cmsApi: 'http://localhost:5000/api',
+    cmsApi: 'http://localhost:5003/api',
     cdnUrl: 'http://cdn.ichibajp.com'
   },
   sso: {

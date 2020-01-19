@@ -18,6 +18,20 @@ export class ConfigSetting {
 
     public static IMAGE_UPLOAD = env.baseUrl.cmsApi + '/File/UploadImage';
 
+
+    public static CET_JTABLE_ACCOUNTINGACCOUNTS = env.baseUrl.cmsApi + '/Account/GetJtable';
+
+
+    public static GET_JTABLE_BANK_ACCOUNT = env.baseUrl.cmsApi + '/BankAccount/GetJtable';
+    public static ADD_NEW_BANK_ACCOUNT = env.baseUrl.cmsApi + '/BankAccount/AddBankAccount';
+    
+    
+
+
+
+
+
+
     public static CATEGORY_YAHOO_AUCTION_LIST = env.baseUrl.cmsApi + '/CategoryYahooauctions/GetList';
     public static CATEGORY_YAHOO_AUCTION_LIST_JTABLE = env.baseUrl.cmsApi + '/CategoryYahooauctions/GetJTable';
     public static CATEGORY_YAHOO_AUCTION_ADD = env.baseUrl.cmsApi + '/CategoryYahooauctions/Add';

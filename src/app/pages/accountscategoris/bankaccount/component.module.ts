@@ -1,33 +1,34 @@
 import { Routes, RouterModule } from '@angular/router';
-import { CommonModule, DecimalPipe, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DataTablesModule } from 'angular-datatables';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateNativeUTCAdapter, NgbDateAdapter, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateCustomParserFormatter } from '../../../common/date-parser-formater';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BlockUIModule } from 'ng-block-ui';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { jqxBarGaugeModule }    from 'jqwidgets-ng/jqxbargauge';
-import{ jqxTreeGridComponent } from 'jqwidgets-ng/jqxtreegrid';
+import { FileService } from 'src/app/services/file.service';
+
 import { IndexComponent } from './index.component';
-import { AccountingAccountsService } from 'src/app/services/accountingaccounts.service';
- 
+import { BankAccountService } from 'src/app/services/bankaccount.service';
+import { AddbankAccountComponent } from './addbankaccount.component';
+
 const routes: Routes = [
   {
     path: '',
-     component: IndexComponent,
+    component: IndexComponent
   }
 ];
 @NgModule({
   declarations: [
      IndexComponent,
-     jqxTreeGridComponent
+     AddbankAccountComponent
   ],
   imports: [
     CommonModule,
-    jqxBarGaugeModule,
     FormsModule, FileUploadModule,
     ReactiveFormsModule,
     DataTablesModule,
@@ -42,12 +43,17 @@ const routes: Routes = [
     EditorModule
   ],
   providers: [
-    AccountingAccountsService
+    FileService,
+    BankAccountService,
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }, // formatdate
+    { provide: NgbDateAdapter, useClass: NgbDateNativeUTCAdapter }
   ],
   bootstrap: [
-    IndexComponent,
+  
   ],
+  entryComponents: [AddbankAccountComponent]
+
 })
 
-export class AccountingAccountsComponentModule {
+export class BankAccountComponentModule {
 }

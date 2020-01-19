@@ -43,7 +43,8 @@ export class UtilityService {
 
         { key: "ORDER_GET_TRACKING_NUMBER_ORDER_DETAIL_MULTI", value: "Đơn hàng có nhiều sản phẩm không thể xác định được sản phẩm cần lấy tracking number!" },
         { key: "ORDER_GET_TRACKING_NUMBER_JUST_SUPPORT_AUCTION", value: "Tính năng tự động lấy mã tracking number chỉ hỗ trợ đơn hàng AUCTION (AUC, DGS)!" },
-        { key: "ORDER_GET_TRACKING_NUMBER_FAIL_OR_TRACKING_NUMBER_NOT_EXISTING", value: "Không tồn tại mã tracking number hoặc không thành công, bạn vui lòng kiểm tra trực tiếp bên auction!" }
+        { key: "ORDER_GET_TRACKING_NUMBER_FAIL_OR_TRACKING_NUMBER_NOT_EXISTING", value: "Không tồn tại mã tracking number hoặc không thành công, bạn vui lòng kiểm tra trực tiếp bên auction!" },
+        { key: "THE_BANK_ACCOUNT_ALREADY_EXISTS_IN_THE_SYSTEM", value: "Tài khoản ngân hàng đã tồn tại trong hệ thống!" }
     ];
 
     constructor(private toastrService: ToastrService) {

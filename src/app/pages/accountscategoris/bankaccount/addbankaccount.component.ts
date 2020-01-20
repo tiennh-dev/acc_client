@@ -33,6 +33,7 @@ export class AddbankAccountComponent implements AfterViewInit, OnInit {
         private _formBuilder: FormBuilder,
     ) {
         this.listBankName=[
+            {id:'BIDV',name:'BIDV'},
             {id:'MSB',name:'MSB'},
             {id:'VIETCOMBANK',name:'VIETCOMBANK'},
             {id:'PHUONGDONG',name:'PHUONGDONG'},

@@ -9,3 +9,15 @@ export class BankAccountJTable {
     Note:string;
     Active:boolean;
   }
+
+  export class BankAccountEdit{
+    id:number;
+    bankAccount:string;
+    bankName:string;
+    branch:string;
+    province:string;
+    address:string;
+    owner:string;
+    note:string;
+    active:boolean;
+  }

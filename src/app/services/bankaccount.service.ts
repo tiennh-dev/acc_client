@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClientService } from './http-client.service';
 import { ConfigSetting } from '../common/config-setting';
-import { BankAccountJTable } from '../models/model/bankaccount.model';
+import { BankAccountJTable, BankAccountEdit } from '../models/model/bankaccount.model';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
  
 
@@ -20,6 +20,16 @@ export class BankAccountService {
     addBankAccount(request:BankAccountJTable):Observable<BaseResponse>{
         const url = ConfigSetting.ADD_NEW_BANK_ACCOUNT;
         return this.http.postAuthorize<BaseResponse>(url, request);
+    }
+
+    editBankAccount(request:BankAccountEdit):Observable<BaseResponse>{
+        const url = ConfigSetting.Edit_NEW_BANK_ACCOUNT;
+        return this.http.postAuthorize<BaseResponse>(url, request);
+    }
+
+    bankAccountById(bankAccountId:number):Observable<BaseEntityResponse<BankAccountEdit>>{
+        const url = ConfigSetting.GET_BANK_ACCOUNT_BUY_ID;
+        return this.http.postAuthorize<BaseEntityResponse<BankAccountEdit>>(url + '/' + bankAccountId, null);
     }
 
     deleteBankAccount(Id:number):Observable<BaseResponse>{

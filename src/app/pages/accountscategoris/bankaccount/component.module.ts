@@ -15,6 +15,7 @@ import { FileService } from 'src/app/services/file.service';
 import { IndexComponent } from './index.component';
 import { BankAccountService } from 'src/app/services/bankaccount.service';
 import { AddbankAccountComponent } from './addbankaccount.component';
+import { EditbankAccountComponent } from './editbankaccount.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
      IndexComponent,
-     AddbankAccountComponent
+     AddbankAccountComponent,
+     EditbankAccountComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +53,7 @@ const routes: Routes = [
   bootstrap: [
   
   ],
-  entryComponents: [AddbankAccountComponent]
+  entryComponents: [AddbankAccountComponent,EditbankAccountComponent]
 
 })
 

@@ -1,0 +1,72 @@
+<div *blockUI="'blockui'">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Thay đổi tài khoản ngân hàng</h5>
+        <button type="button" class="close" (click)="activeModal.dismiss('x')" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form class="theme-form" name="myform" [formGroup]="myform">
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Số tài khoản (*)</label>
+                <div class="col-sm-6">
+                    <input type="text" [(ngModel)]="dataModel.bankAccount" formControlName="bankAccount" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.bankAccount.errors }" required />
+                    <div *ngIf="submitted && f.bankAccount.errors?.required" class="invalid-feedback">
+                        Số tài khoản không được để trống
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Ngân hàng<span>*</span></label>
+                <div class="col-sm-6">
+                    <ng-select [items]="listBankName" formControlName="bankName" [(ngModel)]="dataModel.bankName" [virtualScroll]="true"  bindLabel="name" bindValue="id"
+                        [ngClass]="{ 'is-invalid': submitted && f.bankName.errors }" required class="custom-select2">
+                    </ng-select>
+                    <div *ngIf="submitted && f.bankName.errors?.required" class="invalid-feedback">
+                        Ngân hàng không được để trống
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Chi nhánh</label>
+                <div class="col-sm-6">
+                    <input type="text" formControlName="branch" [(ngModel)]="dataModel.branch" class="form-control"  />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Tỉnh T/P</label>
+                <div class="col-sm-6">
+                    <input type="text" formControlName="province" [(ngModel)]="dataModel.province"  class="form-control"  />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Địa chỉ</label>
+                <div class="col-sm-6">
+                    <input type="text"  formControlName="address" [(ngModel)]="dataModel.address" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Chủ tài khoản</label>
+                <div class="col-sm-6">
+                    <input type="text"  formControlName="owner" [(ngModel)]="dataModel.owner" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message-text"  class="col-form-label">Ghi chú</label>
+                <textarea class="form-control"  [(ngModel)]="dataModel.note" id="message-text"
+                    formControlName="note"></textarea>
+            </div>
+            <div class="modal-footer">
+                <div style="margin-right: 310px;" *ngIf="!checkedActive">
+                    <input type="checkbox" formControlName="active" [(ngModel)]="dataModel.active"  /><span style="margin-left: 1px;">Ngừng theo dõi</span>
+                </div>
+                <div style="margin-right: 310px;" *ngIf="checkedActive">
+                    <input type="checkbox" checked formControlName="active" [(ngModel)]="dataModel.active"  /><span style="margin-left: 1px;">Ngừng theo dõi</span>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="edit()">Sửa</button>
+                <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('x')">Thoát</button>
+            </div>
+        </form>
+    </div>
+</div>

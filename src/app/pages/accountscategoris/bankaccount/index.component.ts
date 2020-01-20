@@ -13,6 +13,7 @@ import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ConfigSetting, Actions, MenuContextDefine2, PermissionCommon } from 'src/app/common/config-setting';
 import { BankAccountService } from 'src/app/services/bankaccount.service';
 import { AddbankAccountComponent } from './addbankaccount.component';
+import { EditbankAccountComponent } from './editbankaccount.component';
 
 @Component({
     selector: 'app-bankname',
@@ -147,7 +148,12 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
                         return {
                             callback: function (key, options) {
                                 if (key === 'edit') {
-
+                                    const modalRef = self.modalService.open(EditbankAccountComponent);
+                                    modalRef.componentInstance.bankAccountId = data.Id;
+                                    modalRef.result.then((result) => {
+                                      self.rerender(false);
+                                    }, (reason) => {
+                                    });
                                 }
                                 if (key === 'active') {
 

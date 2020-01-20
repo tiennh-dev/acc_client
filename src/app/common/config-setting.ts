@@ -25,6 +25,10 @@ export class ConfigSetting {
     public static GET_JTABLE_BANK_ACCOUNT = env.baseUrl.cmsApi + '/BankAccount/GetJtable';
     public static ADD_NEW_BANK_ACCOUNT = env.baseUrl.cmsApi + '/BankAccount/AddBankAccount';
     public static DELETE_BANK_ACCOUNT = env.baseUrl.cmsApi + '/BankAccount/DeleteBankAccount';
+    public static GET_BANK_ACCOUNT_BUY_ID = env.baseUrl.cmsApi + '/BankAccount/GetBankAccountBuyId';
+    public static Edit_NEW_BANK_ACCOUNT = env.baseUrl.cmsApi + '/BankAccount/EditBankAccount';
+    
+    
     
     
     

@@ -29,6 +29,9 @@ export const MENUITEMS: Menu[] = [
   {
     path: '/accountscategoris/bankaccount', title: 'Tài khoản ngân hàng', icon: 'icon-home', type: 'link'
   },
+  {
+    path: '/accountscategoris/customergroupandsubpliers', title: 'Nhóm khách hàng/nhà cung cấp', icon: 'fa fa-users', type: 'link'
+  },
   // {
   //   headTitle: 'Quản lý kho'
   // },

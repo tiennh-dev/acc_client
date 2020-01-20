@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h5>Nhóm khách hàng/Nhà cung cấp</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="search-box">
+                        <div class="row mb-1">
+                            <div class="col-lg-3">
+                                <input placeholder="Mã nhóm" type="text" (change)="rerender(true)" class="form-control"
+                                    [(ngModel)]="search_bankAccount" />
+                            </div>
+                            <div class="col-lg-3">
+                                <input placeholder="Tên nhóm" type="text" (change)="rerender(true)" class="form-control"
+                                    [(ngModel)]="search_Owner" />
+                            </div>
+                            <div class="col-lg-3">
+                                <input placeholder="Ghi chú" type="text" (change)="rerender(true)" class="form-control"
+                                    [(ngModel)]="search_bankName" />
+                            </div>
+                            <div class="col-lg-3">
+                                <ng-select [items]="activeList" bindLabel="display" (change)="rerender(true)" bindValue="status"
+                                    [(ngModel)]="search_active" placeholder="Trạng thái hoat động">
+                                </ng-select>
+                            </div>
+                        </div>
+                    </div>
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table  table-hover"></table>
+                </div>
+            </div>
+
+        </div>
+    </div>

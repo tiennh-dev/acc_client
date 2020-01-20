@@ -13,6 +13,10 @@ const routes: Routes = [
             {
                 path: 'bankaccount',
                 loadChildren: './bankaccount/component.module#BankAccountComponentModule',
+            },
+            {
+                path: 'customergroupandsubpliers',
+                loadChildren: './customergroupandsubpliers/component.module#CustomerGroupAndSuppliersComponentModule',
             }
         ]
     }

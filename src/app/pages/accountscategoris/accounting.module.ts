@@ -4,6 +4,7 @@ import { KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
 import { AccountCategorisRoutingModule } from './accounting-routing.module';
 import { AccountingAccountsComponentModule } from './accountingaccounts/component.module';
 import { BankAccountComponentModule } from './bankaccount/component.module';
+import { CustomerGroupAndSuppliersComponentModule } from './customergroupandsubpliers/component.module';
  
  
 
@@ -13,7 +14,8 @@ import { BankAccountComponentModule } from './bankaccount/component.module';
     imports: [
         AccountCategorisRoutingModule,
         AccountingAccountsComponentModule,
-        BankAccountComponentModule
+        BankAccountComponentModule,
+        CustomerGroupAndSuppliersComponentModule
     ],
     providers: [
 

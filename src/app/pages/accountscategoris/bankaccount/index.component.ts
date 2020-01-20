@@ -147,6 +147,9 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
                     build: function ($triggerElement, e) {
                         return {
                             callback: function (key, options) {
+                                if (key === 'copy') {
+
+                                }
                                 if (key === 'edit') {
                                     const modalRef = self.modalService.open(EditbankAccountComponent);
                                     modalRef.componentInstance.bankAccountId = data.Id;
@@ -154,9 +157,6 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
                                       self.rerender(false);
                                     }, (reason) => {
                                     });
-                                }
-                                if (key === 'active') {
-
                                 }
                                 if (key === 'delete') {
                                     self.confirmService.confirm('Thông báo', `Bạn có chắc chắn muốn xóa tài khoản ngân hàng {${data.BankAccount}} không ?`)
@@ -168,8 +168,9 @@ export class IndexComponent implements AfterViewInit, OnDestroy, OnInit {
                                 }
                             },
                             items: {
-                                "edit": { name: "Edit item", icon: "fa-edit" },
-                                "delete": { name: "Delete item", icon: "fa-recycle" },
+                                "copy": { name: "Nhân bản", icon: "fa-files-o" },
+                                "edit": { name: "Sửa", icon: "fa-edit" },
+                                "delete": { name: "Xóa", icon: "fa-recycle" },
                                 "sep1": "---------",
                                 "quit": {
                                     name: "Quit", icon: function () {

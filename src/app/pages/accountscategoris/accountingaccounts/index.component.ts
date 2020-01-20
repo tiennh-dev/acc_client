@@ -72,81 +72,80 @@ export class IndexComponent implements OnInit {
           })
         ).subscribe(res => {
           this.dataTable = res.data;
-          console.log(this.dataTable);
         });
     }
 
-    getWidth(): any {
-        return '100%';
-    }
-    data: any[] = [
-        {
-            'id': '1', 'name': 'Corporate Headquarters', 'budget': '1230000', 'location': 'Las Vegas',
-            'children':
-                [
-                    {
-                        'id': '2', 'name': 'Finance Division', 'budget': '423000', 'location': 'San Antonio',
-                        'children':
-                            [
-                                { 'id': '3', 'name': 'Accounting Department', 'budget': '113000', 'location': 'San Antonio' },
-                                {
-                                    'id': '4', 'name': 'Investment Department', 'budget': '310000', 'location': 'San Antonio',
-                                    'children':
-                                        [
-                                            { 'id': '5', 'name': 'Banking Office', 'budget': '240000', 'location': 'San Antonio' },
-                                            { 'id': '6', 'name': 'Bonds Office', 'budget': '70000', 'location': 'San Antonio' },
-                                        ]
-                                }
-                            ]
-                    },
-                    {
-                        'id': '7', 'name': 'Operations Division', 'budget': '600000', 'location': 'Miami',
-                        'children':
-                            [
-                                { 'id': '8', 'name': 'Manufacturing Department', 'budget': '300000', 'location': 'Miami' },
-                                { 'id': '9', 'name': 'Public Relations Department', 'budget': '200000', 'location': 'Miami' },
-                                { 'id': '10', 'name': 'Sales Department', 'budget': '100000', 'location': 'Miami' }
-                            ]
-                    },
-                    { 'id': '11', 'name': 'Research Division', 'budget': '200000', 'location': 'Boston' }
-                ]
-        }
-    ];
-    source: any =
-        {
-            dataType: 'json',
-            dataFields: [
-                { name: 'no', type: 'string' },
-                { name: 'name', type: 'string' },
-                { name: 'typeDisplay', type: 'string' },
-                { name: 'subChildren', type: 'array' },
-                { name: 'note', type: 'string' },
-                { name: 'active', type: 'boolean' }
-            ],
-            hierarchy:
-            {
-                root: 'subChildren'
-            },
-            localData: this.dataTable,
-            id: 'no'
-        };
-    dataAdapter: any = new jqx.dataAdapter(this.source);
+//     getWidth(): any {
+//         return '100%';
+//     }
+//     data: any[] = [
+//         {
+//             'id': '1', 'name': 'Corporate Headquarters', 'budget': '1230000', 'location': 'Las Vegas',
+//             'children':
+//                 [
+//                     {
+//                         'id': '2', 'name': 'Finance Division', 'budget': '423000', 'location': 'San Antonio',
+//                         'children':
+//                             [
+//                                 { 'id': '3', 'name': 'Accounting Department', 'budget': '113000', 'location': 'San Antonio' },
+//                                 {
+//                                     'id': '4', 'name': 'Investment Department', 'budget': '310000', 'location': 'San Antonio',
+//                                     'children':
+//                                         [
+//                                             { 'id': '5', 'name': 'Banking Office', 'budget': '240000', 'location': 'San Antonio' },
+//                                             { 'id': '6', 'name': 'Bonds Office', 'budget': '70000', 'location': 'San Antonio' },
+//                                         ]
+//                                 }
+//                             ]
+//                     },
+//                     {
+//                         'id': '7', 'name': 'Operations Division', 'budget': '600000', 'location': 'Miami',
+//                         'children':
+//                             [
+//                                 { 'id': '8', 'name': 'Manufacturing Department', 'budget': '300000', 'location': 'Miami' },
+//                                 { 'id': '9', 'name': 'Public Relations Department', 'budget': '200000', 'location': 'Miami' },
+//                                 { 'id': '10', 'name': 'Sales Department', 'budget': '100000', 'location': 'Miami' }
+//                             ]
+//                     },
+//                     { 'id': '11', 'name': 'Research Division', 'budget': '200000', 'location': 'Boston' }
+//                 ]
+//         }
+//     ];
+//     source: any =
+//         {
+//             dataType: 'json',
+//             dataFields: [
+//                 { name: 'no', type: 'string' },
+//                 { name: 'name', type: 'string' },
+//                 { name: 'typeDisplay', type: 'string' },
+//                 { name: 'subChildren', type: 'array' },
+//                 { name: 'note', type: 'string' },
+//                 { name: 'active', type: 'boolean' }
+//             ],
+//             hierarchy:
+//             {
+//                 root: 'subChildren'
+//             },
+//             localData: this.dataTable,
+//             id: 'no'
+//         };
+//     dataAdapter: any = new jqx.dataAdapter(this.source);
 
-    columns: any[] = [
-        { text: 'Số tài khoản', dataField: 'no', width: 150 },
-        {
-            text: 'Tên tài khoản', dataField: 'name', width: 270
-        },
-        {
-            text: 'Tính chất', dataField: 'typeDisplay'
-        },
-        {
-            text: 'Ghi chú', align: 'right', cellsAlign: 'right', cellClassName: 'conditionalFormatting', cellsFormat: 'c2', dataField: 'note', width: 200
-        }
-    ];
-    ready(): void {
-        this.treeGrid.expandRow(1);
-        this.treeGrid.expandRow(2);
-        this.treeGrid.expandRow(7);
-    }
-}
+//     columns: any[] = [
+//         { text: 'Số tài khoản', dataField: 'no', width: 150 },
+//         {
+//             text: 'Tên tài khoản', dataField: 'name', width: 270
+//         },
+//         {
+//             text: 'Tính chất', dataField: 'typeDisplay'
+//         },
+//         {
+//             text: 'Ghi chú', align: 'right', cellsAlign: 'right', cellClassName: 'conditionalFormatting', cellsFormat: 'c2', dataField: 'note', width: 200
+//         }
+//     ];
+//     ready(): void {
+//         this.treeGrid.expandRow(1);
+//         this.treeGrid.expandRow(2);
+//         this.treeGrid.expandRow(7);
+//     }
+ }

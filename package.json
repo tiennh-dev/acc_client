@@ -78,7 +78,7 @@
     "ngx-perfect-scrollbar": "^7.1.0",
     "ngx-rangeslider-component": "^1.0.6",
     "ngx-toastr": "^9.1.2",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
     "screenfull": "^3.3.3",

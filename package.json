@@ -52,7 +52,7 @@
     "ion-rangeslider": "^2.3.0",
     "jquery": "^3.4.0",
     "jquery-contextmenu": "^2.8.0",
-    "jquery-ui": "^1.12.1",
+    "jquery-ui": "^1.13.2",
     "jqwidgets-ng": "^9.0.0",
     "jqwidgets-scripts": "^9.0.0",
     "jstree": "^3.3.7",
